@@ -1,0 +1,161 @@
+import '../controller/flash_sale_full_controller.dart';
+import '../models/dynamicview_item_model.dart';
+import 'package:amit_s_application2/core/app_export.dart';
+import 'package:flutter/material.dart';
+
+// ignore: must_be_immutable
+class DynamicviewItemWidget extends StatelessWidget {
+  DynamicviewItemWidget(
+    this.dynamicviewItemModelObj, {
+    Key? key,
+  }) : super(
+          key: key,
+        );
+
+  DynamicviewItemModel dynamicviewItemModelObj;
+
+  var controller = Get.find<FlashSaleFullController>();
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Card(
+          clipBehavior: Clip.antiAlias,
+          elevation: 0,
+          margin: EdgeInsets.all(0),
+          color: theme.colorScheme.onErrorContainer.withOpacity(1),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadiusStyle.circleBorder11,
+          ),
+          child: Container(
+            height: 181.v,
+            width: 165.h,
+            padding: EdgeInsets.all(5.h),
+            decoration: AppDecoration.outlineBlack900023.copyWith(
+              borderRadius: BorderRadiusStyle.circleBorder11,
+            ),
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+                CustomImageView(
+                  imagePath: ImageConstant.imgEf9e6aa5974f4,
+                  height: 171.v,
+                  width: 155.h,
+                  radius: BorderRadius.circular(
+                    5.h,
+                  ),
+                  alignment: Alignment.center,
+                ),
+                Align(
+                  alignment: Alignment.center,
+                  child: SizedBox(
+                    height: 171.v,
+                    width: 155.h,
+                    child: Stack(
+                      alignment: Alignment.topRight,
+                      children: [
+                        Obx(
+                          () => CustomImageView(
+                            imagePath: dynamicviewItemModelObj.image2!.value,
+                            height: 171.v,
+                            width: 155.h,
+                            radius: BorderRadius.circular(
+                              5.h,
+                            ),
+                            alignment: Alignment.center,
+                          ),
+                        ),
+                        Align(
+                          alignment: Alignment.topRight,
+                          child: SizedBox(
+                            height: 18.v,
+                            width: 39.h,
+                            child: Stack(
+                              alignment: Alignment.bottomCenter,
+                              children: [
+                                Align(
+                                  alignment: Alignment.center,
+                                  child: Container(
+                                    height: 18.v,
+                                    width: 39.h,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.only(
+                                        topLeft: Radius.circular(5.h),
+                                        topRight: Radius.circular(5.h),
+                                        bottomLeft: Radius.circular(5.h),
+                                      ),
+                                      gradient: LinearGradient(
+                                        begin: Alignment(1, 0),
+                                        end: Alignment(0, 0),
+                                        colors: [
+                                          appTheme.pink300,
+                                          appTheme.redA400,
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Align(
+                                  alignment: Alignment.bottomCenter,
+                                  child: Obx(
+                                    () => Text(
+                                      dynamicviewItemModelObj.title!.value,
+                                      style: CustomTextStyles
+                                          .labelLargeOnErrorContainerBold,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+        SizedBox(height: 6.v),
+        SizedBox(
+          width: 116.h,
+          child: Obx(
+            () => Text(
+              dynamicviewItemModelObj.text1!.value,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+              style: theme.textTheme.bodySmall!.copyWith(
+                height: 1.33,
+              ),
+            ),
+          ),
+        ),
+        SizedBox(height: 3.v),
+        Row(
+          children: [
+            Obx(
+              () => Text(
+                dynamicviewItemModelObj.text2!.value,
+                style: theme.textTheme.titleMedium,
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(left: 2.h),
+              child: Obx(
+                () => Text(
+                  dynamicviewItemModelObj.text3!.value,
+                  style: CustomTextStyles.titleSmallRed200.copyWith(
+                    decoration: TextDecoration.lineThrough,
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+}
